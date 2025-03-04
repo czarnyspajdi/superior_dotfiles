@@ -1,0 +1,10 @@
+[app-name=wp-vol]
+layer=overlay
+history=0
+anchor=top-right
+
+[mode=do-not-disturb]
+invisible=1
+
+[mode=do-not-disturb app-name=wp-vol]
+invisible=0
