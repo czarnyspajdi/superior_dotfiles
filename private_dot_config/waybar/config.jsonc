@@ -1,0 +1,139 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/spotify",
+        "custom/media"
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+        "tray",
+        "network",
+        "pulseaudio",
+        "privacy",
+        "group/hardware"
+    ],
+    "hyprland/workspaces": {
+        "active-only": true,
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": true,
+        },
+        "modules": [
+            "temperature",
+            "memory",
+            "disk",
+            "cpu",
+            "battery",
+        ],
+    },
+    "temperature": {
+        "format": "|TEMP: {temperatureC}%|",
+        "tooltip": false,
+    },
+    "memory": {
+        "format": "|RAM: {percentage}%|",
+    },
+    "disk": {
+        "format": "|DISK: {percentage_used}%|",
+        "tooltip": false,
+    },
+    "cpu": {
+        "format": "|CPU: {usage}|",
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "| {capacity}% {icon} ",
+        "format-full": "{capacity}% {icon} ",
+        "format-charging": "{capacity}%  ",
+        "format-plugged": "{capacity}%  ",
+        "format-alt": "{time} {icon}",
+        "format-good": "", // An empty format will hide the module
+        "format-full": "",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "{ipaddr}/{cidr}  ",
+        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": " {volume}% {icon} {format_source} ",
+        "format-bluetooth": " {volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "  {icon} {format_source}",
+        "format-muted": "  {format_source}",
+        "format-source": " {volume}%  ",
+        "format-source-muted": "  ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/spotify": {
+        "format": "{}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause --player spotify",
+        "on-click-right": "killall spotify",
+        "on-scroll-up": "playerctl next --player spotify",
+        "on-scroll-down": "playerctl previous --player spotify",
+        "restart-interval": "0",
+        "hide-empty-text": true,
+        "justify": "center",
+        "max-length": 40,
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh spotify",
+    },
+    "custom/media": {
+        "format": "{}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause --player firefox.instance_1_76",
+        "on-click-right": "killall firefox.instance_1_76",
+        "on-scroll-up": "playerctl next --player firefox.instance_1_76",
+        "on-scroll-down": "playerctl previous --player firefox.instance_1_76",
+        "restart-interval": "0",
+        "hide-empty-text": true,
+        "justify": "center",
+        "max-length": 40,
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh firefox.instance_1_76",
+    },
+}

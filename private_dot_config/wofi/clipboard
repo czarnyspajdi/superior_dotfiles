@@ -1,0 +1,15 @@
+mode=dmenu
+width=65%
+height=80%
+prompt=Select entry to copy
+allow_images=true
+allow_markup=false
+term=kitty
+hide_scroll=true
+key_down=Ctrl-n
+key_up=Ctrl-p
+halign=center
+content_halign=center
+insensitive=true
+line_wrap=word_char
+dynamic_lines=true

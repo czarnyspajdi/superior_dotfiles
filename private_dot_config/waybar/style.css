@@ -1,0 +1,110 @@
+@import url("./colors.css");
+
+* {
+    font-family: "Cousine Nerd Font mono";
+    font-size: 16px;
+    padding: 2px;
+    margin: 1px;
+    color: @font-color;
+    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+}
+
+window#waybar {
+    background: @background;
+    border-radius: 20px;
+}
+
+/* modules */
+
+#workspaces button {
+    background-color: @foreground;
+    margin-left: 5px;
+}
+
+#workspaces button.urgent {
+    background-color: red;
+    animation: blink;
+    animation-duration: 5s;
+}
+
+#clock {
+    border-radius: 25px;
+    margin: 10px;
+}
+
+tooltip {
+    background-color: black;
+}
+
+#media,
+#network,
+#pulseaudio,
+#battery {
+    border: 2px solid @foreground;
+}
+
+#tray {
+    background-color: @foreground;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+/* battery */
+
+#battery.warning:not(.charging) {
+    background: orange;
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ff0000;
+        color: #000000;
+    }
+}
+
+#custom-spotify {
+    background-color: rgba(29, 185, 84, 0.30);
+    color: black;
+    padding: 10px;
+    margin: 5px;
+    transition: 0.5s all ease-in-out;
+}
+
+#custom-spotify:hover {
+    background-color: rgba(29, 185, 84, 1);
+}
+
+#custom-media {
+    background-color: rgba(255, 16, 0, 0.30);
+    color: black;
+    padding: 10px;
+    margin: 5px;
+    transition: 0.5s all ease-in-out;
+}
+
+#custom-media:hover {
+    background-color: rgba(255, 16, 0, 1);
+}

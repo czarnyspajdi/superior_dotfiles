@@ -1,0 +1,51 @@
+* {
+    font-family: "Cousine Nerd Font mono";
+    font-size: 18px;
+    padding: 2px;
+}
+
+#window {
+    background-color: black;
+    border-radius: 20px;
+    opacity: 15%;
+
+}
+
+#outer-box {
+    border-radius: 20px;
+    background-color: rgba(--wofi-rgb-color0, 0.20);
+}
+
+#input {
+    background-color: rgba(--wofi-rgb-color0, 0.30);
+    border-radius: 20px 20px 0 0;
+    border-color: transparent;
+    color: #499DA9;
+    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+}
+
+#scroll {
+    background-color: transparent;
+}
+
+#text {
+    text-align: center;
+    background-color: transparent;
+    color: --wofi-color1;
+    text-shadow: 1 1 5px black, 1 1 7px black, 1 1 10px black;
+}
+
+#text:selected {
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+}
+
+#entry {
+    border-radius: 15px;
+    outline: none
+}
+
+#entry:selected {
+    background-color: transparent;
+}
