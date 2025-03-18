@@ -15,16 +15,17 @@ gray[background]="rgba(169, 169, 169, 0.20)"
 gray[foreground]="rgba(169, 169, 169, 0.30)"
 gray[font-color]="#A9A9A9"
 
+choosen_color=$(echo -e "blue\nred\ngray\n" | wofi --show dmenu --prompt "Choose your theme")
 
-if [[ $1 == "blue" ]]; then
+if [[ $choosen_color == "blue" ]]; then
     waybar_colors="@define-color background ${blue[background]};\n@define-color foreground ${blue[foreground]};\n@define-color font-color ${blue[font-color]};"
     mako_colors="blue"
     wofi_colors="#249ECA\n#499DA9"
-elif [[ $1 == "red" ]]; then
+elif [[ $choosen_color == "red" ]]; then
     waybar_colors="@define-color background ${red[background]};\n@define-color foreground ${red[foreground]};\n@define-color font-color ${red[font-color]};"
     mako_colors="red"
     wofi_colors="#CA2424\n#A94949"
-elif [[ $1 == "gray" ]]; then
+elif [[ $choosen_color == "gray" ]]; then
     waybar_colors="@define-color background ${gray[background]};\n@define-color foreground ${gray[foreground]};\n@define-color font-color ${gray[font-color]};"
     mako_colors="gray"
     wofi_colors="#A9A9A9\n#A9A9A9"

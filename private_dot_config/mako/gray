@@ -19,7 +19,7 @@ border-radius=15
 border-color=#D3D3D3
 
 [urgency=normal]
-border-color=#A9A9A9
+border-color=#A9A9A980
 
 [urgency=critical]
 on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/window-attention.oga

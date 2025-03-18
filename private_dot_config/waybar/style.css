@@ -40,7 +40,8 @@ tooltip {
 #network,
 #pulseaudio,
 #battery {
-    border: 2px solid @foreground;
+    border-radius: 25px;
+    margin: 5px;
 }
 
 #tray {
