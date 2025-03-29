@@ -35,7 +35,7 @@ flatpak install --noninteractive net.rpcs3.RPCS3
 
 echo "Services..."
 
-systemctl --user enable hypridle hyprpolkitagent pipewire-pulse hypridle waybar
+systemctl --user enable hypridle hyprpolkitagent pipewire-pulse hypridle waybar hyprpaper
 sudo systemctl enable bluetooth greetd
 
 echo "All done"

@@ -2,10 +2,12 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 5, // Gaps between modules (4px)
+    "output": "DP-1",
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces",
+        "privacy",
+        "tray",
         "custom/spotify",
         "custom/media"
     ],
@@ -13,11 +15,9 @@
         "clock",
     ],
     "modules-right": [
-        "tray",
         "group/hardware",
-        "network",
         "pulseaudio",
-        "privacy",
+        "custom/notifications",
         "battery",
     ],
     "hyprland/workspaces": {
@@ -27,6 +27,7 @@
         "spacing": 10
     },
     "clock": {
+        "format": "<big>{:%H:%M}</big>",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -38,10 +39,12 @@
             "transition-left-to-right": true,
         },
         "modules": [
+            "custom/hardware",
             "temperature",
             "memory",
             "disk",
             "cpu",
+            "network",
         ],
     },
     "temperature": {
@@ -56,7 +59,7 @@
         "tooltip": false,
     },
     "cpu": {
-        "format": "|CPU: {usage}|",
+        "format": "|CPU: {usage}%|",
     },
     "battery": {
         "states": {
@@ -78,35 +81,36 @@
         ]
     },
     "network": {
-        "format-wifi": "|{essid} ({signalStrength}%)  |",
-        "format-ethernet": "|{ipaddr}/{cidr}   |",
-        "tooltip-format": "{ifname} via {gwaddr}  |",
-        "format-linked": "|{ifname} (No IP)  |",
-        "format-disconnected": "|Disconnected ⚠|",
-        "format-alt": "|{ifname}: {ipaddr}/{cidr}|"
+        "format-wifi": "Wifi: {essid} ({signalStrength}%)  ",
+        "format-ethernet": "Ethernet:   ",
+        "tooltip-format": "{ifname} via {gwaddr} with {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "|{volume}% {icon} {format_source}|",
-        "format-bluetooth": "|{volume}% {icon} {format_source}|",
-        "format-bluetooth-muted": "| {icon} {format_source}|",
-        "format-muted": " | {format_source}|",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "  ",
         "format-source": " {volume}% ",
         "format-source-muted": "  ",
         "format-icons": {
-            "headphone": " ",
+            "headphone": "",
             "hands-free": " ",
             "headset": " ",
             "phone": " ",
             "portable": " ",
             "car": " ",
             "default": [
-                " ",
-                " ",
-                " "
+                "",
+                "",
+                ""
             ]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol -t 3",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     },
     "custom/spotify": {
         "format": "{}",
@@ -121,17 +125,16 @@
         "max-length": 40,
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh spotify",
     },
-    "custom/media": {
-        "format": "{}",
-        "return-type": "json",
-        "on-click": "playerctl play-pause --player firefox.instance_1_76",
-        "on-click-right": "killall firefox.instance_1_76",
-        "on-scroll-up": "playerctl next --player firefox.instance_1_76",
-        "on-scroll-down": "playerctl previous --player firefox.instance_1_76",
-        "restart-interval": "0",
-        "hide-empty-text": true,
-        "justify": "center",
-        "max-length": 40,
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh firefox.instance_1_76",
+    "custom/hardware": {
+        "format": "<big></big>",
+    },
+    "custom/notifications": {
+        "format": "<big>{text}</big>",
+        "on-click-right": "~/.local/bin/check-do-not-disturb.sh change",
+        "exec": "~/.local/bin/check-do-not-disturb.sh show",
+        "exec-on-event": "~/.local/bin/check-do-not-disturb.sh show",
+        "tooltip": false,
+        "return-type": "text",
+        "signal": 2,
     },
 }

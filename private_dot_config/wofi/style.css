@@ -1,14 +1,14 @@
 * {
     font-family: "Cousine Nerd Font mono";
-    font-size: 18px;
+    font-size: 16px;
     padding: 2px;
+    border-radius: 5px;
 }
 
 #window {
     background-color: black;
     border-radius: 20px;
     opacity: 15%;
-
 }
 
 #outer-box {
@@ -21,7 +21,6 @@
     border-radius: 20px 20px 0 0;
     border-color: transparent;
     color: #499DA9;
-    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
 }
 
 #scroll {
@@ -43,7 +42,7 @@
 
 #entry {
     border-radius: 15px;
-    outline: none
+    outline: none;
 }
 
 #entry:selected {

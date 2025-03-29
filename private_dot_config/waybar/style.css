@@ -1,12 +1,23 @@
 @import url("./colors.css");
 
 * {
+    transition: 2s all ease-in-out;
     font-family: "Cousine Nerd Font mono";
     font-size: 16px;
     padding: 2px;
-    margin: 1px;
+    margin: 1px 4px 1px 4px;
     color: @font-color;
     text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+    border-radius: 25px;
+}
+
+*:hover {
+    text-shadow: 1 1 10px black, 1 1 10px black, 1 1 10px black;
+}
+
+window {
+    background-color: black;
+    margin: 1px;
 }
 
 window#waybar {
@@ -17,8 +28,15 @@ window#waybar {
 /* modules */
 
 #workspaces button {
+    background-color: @background;
+    margin-left: 5px;
+    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+}
+
+#workspaces button:hover {
     background-color: @foreground;
     margin-left: 5px;
+    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
 }
 
 #workspaces button.urgent {
@@ -28,12 +46,16 @@ window#waybar {
 }
 
 #clock {
-    border-radius: 25px;
     margin: 10px;
 }
 
 tooltip {
     background-color: black;
+}
+
+menu {
+    background-color: black;
+    border-radius: 15px;
 }
 
 #media,
@@ -45,10 +67,14 @@ tooltip {
 }
 
 #tray {
-    background-color: @foreground;
+    background-color: @background;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+}
+
+#tray:hover {
+    background-color: @foreground;
 }
 
 /* battery */
@@ -91,21 +117,20 @@ tooltip {
     color: black;
     padding: 10px;
     margin: 5px;
-    transition: 0.5s all ease-in-out;
+    border-radius: 5px;
 }
 
 #custom-spotify:hover {
     background-color: rgba(29, 185, 84, 1);
 }
 
-#custom-media {
-    background-color: rgba(255, 16, 0, 0.30);
-    color: black;
-    padding: 10px;
-    margin: 5px;
-    transition: 0.5s all ease-in-out;
+#custom-notifications {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5;
 }
 
-#custom-media:hover {
-    background-color: rgba(255, 16, 0, 1);
+#custom-hardware {
+    border-radius: 15px;
+    margin: 4px;
 }
