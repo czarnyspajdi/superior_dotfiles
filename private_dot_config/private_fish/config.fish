@@ -2,6 +2,8 @@ if status is-interactive
     # editors for yazi
     export EDITOR="nvim"
     export VISUAL="nvim"
+    # better shell history
+    atuin init fish | source
     # no dum greeting
     set fish_greeting ""
     # yes, please setup git for me
