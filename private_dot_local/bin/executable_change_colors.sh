@@ -18,8 +18,11 @@ gray[foreground]="rgba(169, 169, 169, 0.30)"
 gray[font-color]="#A9A9A9"
 gray[wallpaper]="~/Obrazy/tapety/szary.jpg"
 
+choosen_color=$1
+if [[ -z $choosen_color ]]; then
+    choosen_color=$(echo -e "blue\nred\ngray\n" | wofi --show dmenu --prompt "Choose your theme")
+fi
 
-choosen_color=$(echo -e "blue\nred\ngray\n" | wofi --show dmenu --prompt "Choose your theme")
 echo "You choose: $(choosen_color)"
 
 if [[ $choosen_color == "blue" ]]; then
