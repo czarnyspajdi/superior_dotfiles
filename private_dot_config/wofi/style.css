@@ -20,7 +20,7 @@
     background-color: rgba(--wofi-rgb-color0, 0.30);
     border-radius: 20px 20px 0 0;
     border-color: transparent;
-    color: #499DA9;
+    color: --wofi-color1;
 }
 
 #scroll {
