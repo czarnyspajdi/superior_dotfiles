@@ -14,6 +14,7 @@ font="Cousine Nerd Font mono"
 background-color=#249eca80
 text-color=#FFFFFF
 border-radius=15
+output=DP-1
 
 [urgency=low]
 border-color=#87CEEB
