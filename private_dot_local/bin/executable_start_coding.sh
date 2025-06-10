@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=$(find ~/Dokumenty/kodowanie/ -maxdepth 2 -type d ! -path '.*' | wofi -dmenu)
+dir=$(find ~/Dokumenty/kodowanie/ -maxdepth 2 -type d ! -path '.*' | fzf)
 
 if [[ -n $dir ]]; then
     echo "You choose $dir"
