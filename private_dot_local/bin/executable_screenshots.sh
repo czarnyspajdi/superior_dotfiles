@@ -75,7 +75,7 @@ window)
   grim -g "${x},${y} ${width}x${height}" "$tmp_path"
   ;;
 region)
-  grim -o $(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name') "$tmp_path" && feh --fullscreen "$tmp_path" &
+  grim -o $(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name') "$tmp_path" && feh --title screenshot --fullscreen "$tmp_path" &
   sleep 0.5
   feh_pid=$(pgrep feh)
   grim -g "$(slurp)" "$tmp_path"
@@ -83,7 +83,7 @@ region)
   kill -9 "$feh_pid"
   ;;
 color)
-  grim -o $(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name') "$tmp_path" && feh --fullscreen "$tmp_path" &
+  grim -o $(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name') "$tmp_path" && feh --title screenshot --fullscreen "$tmp_path" &
   sleep 0.5
   feh_pid=$(pgrep feh)
   position=$(slurp -p)

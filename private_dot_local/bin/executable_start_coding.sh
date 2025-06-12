@@ -1,6 +1,7 @@
 #!/bin/bash
 
-dir=$(find ~/Dokumenty/kodowanie/ -maxdepth 2 -type d ! -path '.*' | fzf)
+dir=$(find ~/Dokumenty/kodowanie/ -maxdepth 2 -type d ! -name '.*' | fzf)
+export EDITOR="nvim"
 
 if [[ -n $dir ]]; then
     echo "You choose $dir"
