@@ -11,3 +11,23 @@ on   = "!"
 for  = "unix"
 run  = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "P" ]
+run  = "cd ~/Pobrane"
+desc = "Cd to ~/Pobrane"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "O" ]
+run  = "cd ~/Obrazy"
+desc = "Cd to ~/Obrazy"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "V" ]
+run  = "cd ~/Video"
+desc = "Cd to ~/Video"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "D" ]
+run  = "cd ~/Dokumenty"
+desc = "Cd to ~/Dokumenty"
