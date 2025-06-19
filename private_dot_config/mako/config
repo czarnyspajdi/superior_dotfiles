@@ -4,6 +4,7 @@ on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.og
 default-timeout=5000
 anchor=top-right
 max-visible=5
+layer=overlay
 
 #style
 width=320
@@ -11,16 +12,16 @@ height=300
 margin=25,25,10,10
 padding=10
 font="Cousine Nerd Font mono"
-background-color=#249eca80
+background-color=#ca242480
 text-color=#FFFFFF
 border-radius=15
 output=DP-1
 
 [urgency=low]
-border-color=#87CEEB
+border-color=#FF6347
 
 [urgency=normal]
-border-color=#00000080
+border-color=#ca242480
 
 [urgency=critical]
 on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/window-attention.oga
@@ -28,12 +29,12 @@ border-color=#FF0000
 
 [app-name=wp-vol]
 height=50
-background-color=#249eca99
-border-color=#249eca99
+background-color=#ca242499
+border-color=#ca242499
 layer=overlay
 history=0
 anchor=center
-progress-color=source #5588AA33
+progress-color=source #FF634733
 text-alignment=center
 
 [mode=do-not-disturb]
