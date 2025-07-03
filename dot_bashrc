@@ -51,6 +51,23 @@ PS1="${USER_COLOR}\u${RESET_COLOR}@${HOST_COLOR}\h${RESET_COLOR} ${SEP_COLOR}|${
 eval "$(atuin init bash)"
 eval "$(zoxide init bash)"
 
+# git
+gh auth setup-git
+
+# Uruchamianie ssh-agent jeśli nie działa
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    eval "$(ssh-agent -s)"
+fi
+
+# Dodawanie klucza, jeśli nie został jeszcze dodany
+if ! ssh-add -l | grep -q "$(basename ~/.ssh/github)"; then
+    ssh-add ~/.ssh/github > /dev/null 2>&1
+fi
+
+
+clear
+fastfetch --config ~/.config/fastfetch/startup.jsonc
+
 # path
 PATH=$PATH:~/.local/bin/
 
