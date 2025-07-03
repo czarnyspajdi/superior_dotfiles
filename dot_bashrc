@@ -1,0 +1,56 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# blesh.sh very cool thing
+[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
+force_color_prompt=yes
+
+# aliases
+alias ls="eza --long --icons --color $1"
+alias workon="source ./bin/activate.fish"
+
+# functions
+
+## yazi wrapper
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+## git
+parse_git_branch() {
+  branch=$(git branch --show-current 2>/dev/null)
+  [[ -n "$branch" ]] && echo "($branch)"
+}
+
+# set vi session
+set -o vi
+
+# variables
+export EDITOR="nvim"
+export VISUAL="nvim"
+USER_COLOR='\[\e[1;32m\]'    # Jasna zieleń
+HOST_COLOR='\[\e[1;36m\]'    # Jasny cyjan
+SEP_COLOR='\[\e[0;90m\]'     # Szary separator
+PATH_COLOR='\[\e[0;33m\]'    # Żółty
+GIT_COLOR='\[\e[1;35m\]'     # Jasny fiolet
+RESET_COLOR='\[\e[0m\]'
+
+# Prompt PS1
+PS1="${USER_COLOR}\u${RESET_COLOR}@${HOST_COLOR}\h${RESET_COLOR} ${SEP_COLOR}|${RESET_COLOR} ${PATH_COLOR}\w${RESET_COLOR} ${GIT_COLOR}\$(parse_git_branch)${RESET_COLOR}\n\$ "
+
+# cool shit
+
+eval "$(atuin init bash)"
+eval "$(zoxide init bash)"
+
+# something to ble.sh
+
+[[ ! ${BLE_VERSION-} ]] || ble-attach
