@@ -51,6 +51,9 @@ PS1="${USER_COLOR}\u${RESET_COLOR}@${HOST_COLOR}\h${RESET_COLOR} ${SEP_COLOR}|${
 eval "$(atuin init bash)"
 eval "$(zoxide init bash)"
 
+# path
+PATH=$PATH:~/.local/bin/
+
 # something to ble.sh
 
 [[ ! ${BLE_VERSION-} ]] || ble-attach

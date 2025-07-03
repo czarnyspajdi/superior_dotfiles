@@ -11,6 +11,9 @@ if status is-interactive
     # add github ssh key
     eval (ssh-agent -c)
     ssh-add ~/.ssh/github
+    # vi mode
+    fish_vi_key_bindings
+
     # better cd
     zoxide init fish | source
     clear
