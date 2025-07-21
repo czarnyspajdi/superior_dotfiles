@@ -4,7 +4,6 @@ on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/dialog-information.og
 default-timeout=5000
 anchor=top-right
 max-visible=5
-layer=overlay
 
 #style
 width=320
