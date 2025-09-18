@@ -1,48 +1,54 @@
-@import url("./colors.css");
+@define-color background #f5f5f5;
+@define-color foreground #ffffff;
+@define-color font-color #333333;
+@define-color accent #7aa6c2;
+@define-color accent-hover #5b8da9;
+@define-color warning #f0ad4e;
+@define-color critical #d9534f;
+@define-color success #5cb85c;
 
 * {
-    transition: 2s all ease-in-out;
-    font-family: "Cousine Nerd Font mono";
+    transition: 0.4s all ease-in-out;
+    font-family: "Cousine Nerd Font Mono";
     font-size: 16px;
     padding: 2px;
-    margin: 1px 4px 1px 4px;
+    margin: 1px 4px;
     color: @font-color;
-    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
-    border-radius: 25px;
+    text-shadow: none;
+    border-radius: 12px;
 }
 
 *:hover {
-    text-shadow: 1 1 10px black, 1 1 10px black, 1 1 10px black;
+    text-shadow: none;
 }
 
 window {
-    background-color: black;
+    background-color: @background;
     margin: 1px;
 }
 
 window#waybar {
-    background: @background;
-    border-radius: 20px;
+    background: @foreground;
+    border-radius: 12px;
 }
 
 /* modules */
 
 #workspaces button {
-    background-color: @background;
+    background-color: @foreground;
     margin-left: 5px;
-    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+    color: @font-color;
 }
 
 #workspaces button:hover {
-    background-color: @foreground;
-    margin-left: 5px;
-    text-shadow: 1 1 5px gray, 1 1 7px gray, 1 1 10px gray;
+    background-color: @accent;
+    color: @foreground;
 }
 
 #workspaces button.urgent {
-    background-color: red;
+    background-color: @critical;
     animation: blink;
-    animation-duration: 5s;
+    animation-duration: 2s;
 }
 
 #clock {
@@ -50,40 +56,45 @@ window#waybar {
 }
 
 tooltip {
-    background-color: black;
+    background-color: @foreground;
+    color: @font-color;
 }
 
 menu {
-    background-color: black;
-    border-radius: 15px;
+    background-color: @foreground;
+    border-radius: 10px;
 }
+
+/* moduły */
 
 #media,
 #network,
 #pulseaudio,
 #battery {
-    border-radius: 25px;
+    border-radius: 12px;
     margin: 5px;
+    background-color: @foreground;
 }
 
 #tray {
-    background-color: @background;
+    background-color: @foreground;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
 }
 
 #tray:hover {
-    background-color: @foreground;
+    background-color: @accent-hover;
+    color: @foreground;
 }
 
 /* battery */
 
 #battery.warning:not(.charging) {
-    background: orange;
-    color: white;
+    background: @warning;
+    color: @foreground;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -91,15 +102,15 @@ menu {
 
 #battery.charging,
 #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @foreground;
+    background-color: @success;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @critical;
+    color: @foreground;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -112,25 +123,30 @@ menu {
     }
 }
 
+/* spotify */
 #custom-spotify {
-    background-color: rgba(29, 185, 84, 0.30);
-    color: black;
+    background-color: rgba(122, 166, 194, 0.2);
+    color: @font-color;
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
 }
 
 #custom-spotify:hover {
-    background-color: rgba(29, 185, 84, 1);
+    background-color: rgba(122, 166, 194, 0.8);
+    color: @foreground;
 }
 
+/* notifications, hardware */
 #custom-notifications {
     border-radius: 5px;
     padding: 5px;
-    margin: 5;
+    margin: 5px;
+    background-color: @foreground;
 }
 
 #custom-hardware {
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 4px;
+    background-color: @foreground;
 }

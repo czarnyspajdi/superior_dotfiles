@@ -27,17 +27,37 @@ return {
             cmp_lsp.default_capabilities()
         )
 
+
+        vim.diagnostic.config({
+            virtual_text = {
+                prefix = "●", -- możesz zmienić na "▎", "x", "" itd.
+                spacing = 2, -- odstęp od kodu
+                source = "if_many", -- pokaż źródło błędu (np. rust-analyzer)
+            },
+            signs = true, -- znaki w kolumnie po lewej
+            underline = true, -- podkreślenie błędnych fragmentów
+            update_in_insert = false, -- nie aktualizuj w trybie insert
+        })
+
+
+        vim.keymap.set('n', '<leader>ci', function()
+            vim.diagnostic.open_float(nil, {
+                focus = true,
+                scope = "cursor",
+                border = "rounded",
+                source = "always",
+            })
+        end, { desc = "Pokaż diagnostykę LSP w popupie" })
+
         require("fidget").setup({})
         require("mason").setup()
 
         require('mason-lspconfig').setup({
             ensure_installed = {
                 "lua_ls",
-                "intelephense",
-                "ts_ls",
                 "emmet_language_server",
                 "marksman",
-                "arduino_language_server",
+                "rust-analyzer"
             },
             handlers = { -- config lsp
                 function(server_name)
@@ -66,24 +86,17 @@ return {
                     })
                 end,
 
-                emmet_language_server = function()
-                    require("lspconfig").emmet_language_server.setup({
-                        filetypes = {
-                            "html",
-                            "css",
-                            "js",
-                            "php",
+                rust_analyzer = function()
+                    require('lspconfig').rust_analyzer.setup({
+                        settings = {
+                            ["rust-analyzer"] = {
+                                diagnostics = {
+                                    enable = true
+                                }
+                            }
                         }
                     })
                 end,
-
-                marksman = function()
-                    require("lspconfig").marksman.setup({
-                        filetypes = {
-                            "markdown",
-                        }
-                    })
-                end
 
             }
 
