@@ -1,5 +1,5 @@
 -- Kolorystyka
-vim.cmd.colorscheme("minimal")
+vim.cmd.colorscheme "catppuccin-latte"
 
 -- Wygląd
 vim.opt.relativenumber = true
