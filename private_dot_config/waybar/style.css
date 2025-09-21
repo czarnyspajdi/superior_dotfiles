@@ -1,11 +1,4 @@
-@define-color background #f5f5f5;
-@define-color foreground #ffffff;
-@define-color font-color #333333;
-@define-color accent #7aa6c2;
-@define-color accent-hover #5b8da9;
-@define-color warning #f0ad4e;
-@define-color critical #d9534f;
-@define-color success #5cb85c;
+@import "./colors.css";
 
 * {
     transition: 0.4s all ease-in-out;
@@ -13,7 +6,7 @@
     font-size: 16px;
     padding: 2px;
     margin: 1px 4px;
-    color: @font-color;
+    color: @text;
     text-shadow: none;
     border-radius: 12px;
 }
@@ -23,30 +16,29 @@
 }
 
 window {
-    background-color: @background;
+    background-color: @base;
     margin: 1px;
 }
 
 window#waybar {
-    background: @foreground;
+    background: @surface0;
     border-radius: 12px;
 }
 
 /* modules */
-
 #workspaces button {
-    background-color: @foreground;
+    background-color: @surface1;
     margin-left: 5px;
-    color: @font-color;
+    color: @text;
 }
 
 #workspaces button:hover {
-    background-color: @accent;
-    color: @foreground;
+    background-color: @blue;
+    color: @base;
 }
 
 #workspaces button.urgent {
-    background-color: @critical;
+    background-color: @red;
     animation: blink;
     animation-duration: 2s;
 }
@@ -56,43 +48,41 @@ window#waybar {
 }
 
 tooltip {
-    background-color: @foreground;
-    color: @font-color;
+    background-color: @surface1;
+    color: @text;
 }
 
 menu {
-    background-color: @foreground;
+    background-color: @surface1;
     border-radius: 10px;
 }
 
 /* moduły */
-
 #media,
 #network,
 #pulseaudio,
 #battery {
     border-radius: 12px;
     margin: 5px;
-    background-color: @foreground;
+    background-color: @surface2;
 }
 
 #tray {
-    background-color: @foreground;
+    background-color: @surface1;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
 }
 
 #tray:hover {
-    background-color: @accent-hover;
-    color: @foreground;
+    background-color: @blue;
+    color: @base;
 }
 
 /* battery */
-
 #battery.warning:not(.charging) {
-    background: @warning;
-    color: @foreground;
+    background: @yellow;
+    color: @base;
     animation-name: blink;
     animation-duration: 1s;
     animation-timing-function: steps(12);
@@ -102,13 +92,13 @@ menu {
 
 #battery.charging,
 #battery.plugged {
-    color: @foreground;
-    background-color: @success;
+    color: @base;
+    background-color: @green;
 }
 
 #battery.critical:not(.charging) {
-    background-color: @critical;
-    color: @foreground;
+    background-color: @red;
+    color: @base;
     animation-name: blink;
     animation-duration: 1s;
     animation-timing-function: steps(12);
@@ -118,23 +108,24 @@ menu {
 
 @keyframes blink {
     to {
-        background-color: #ff0000;
-        color: #000000;
+        background-color: @red;
+        color: @base;
     }
 }
 
 /* spotify */
 #custom-spotify {
-    background-color: rgba(122, 166, 194, 0.2);
-    color: @font-color;
+    background-color: rgba(100, 149, 237, 0.2);
+    /* delikatny niebieski */
+    color: @text;
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
 }
 
 #custom-spotify:hover {
-    background-color: rgba(122, 166, 194, 0.8);
-    color: @foreground;
+    background-color: rgba(100, 149, 237, 0.8);
+    color: @base;
 }
 
 /* notifications, hardware */
@@ -142,11 +133,11 @@ menu {
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
-    background-color: @foreground;
+    background-color: @surface2;
 }
 
 #custom-hardware {
     border-radius: 10px;
     margin: 4px;
-    background-color: @foreground;
+    background-color: @surface2;
 }
