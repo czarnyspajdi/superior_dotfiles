@@ -16,6 +16,16 @@ text-color=#FFFFFF
 border-radius=15
 output=DP-1
 
+# Colors
+
+background-color=#eff1f5
+text-color=#4c4f69
+border-color=#1e66f5
+progress-color=over #ccd0da
+
+[urgency=high]
+border-color=#fe640b
+
 [urgency=low]
 border-color=#FF6347
 
@@ -28,12 +38,9 @@ border-color=#FF0000
 
 [app-name=wp-vol]
 height=50
-background-color=#ca242499
-border-color=#ca242499
 layer=overlay
 history=0
 anchor=center
-progress-color=source #FF634733
 text-alignment=center
 
 [mode=do-not-disturb]
