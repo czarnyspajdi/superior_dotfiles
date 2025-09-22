@@ -74,3 +74,40 @@ window#waybar {
 #custom-notifications:hover {
     background-color: @sapphire;
 }
+
+#battery {
+    background-color: @base;
+}
+
+#battery.warning:not(.charging) {
+    background: @warning;
+    color: @foreground;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @foreground;
+    background-color: @success;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @critical;
+    color: @foreground;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ff0000;
+        color: #000000;
+    }
+}
