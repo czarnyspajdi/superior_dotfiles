@@ -3,7 +3,12 @@
     "layer": "top", // Waybar at top layer
     "position": "right", // Waybar position (top|bottom|left|right)
     "spacing": 4, // Gaps between modules (4px)
-    "output": "DP-1",
+    "width": 100,
+    "output": [
+        "DP-1",
+        "eDP-1",
+        "VGA"
+    ],
     // Choose the order of the modules
     "modules-left": [
         "clock",
