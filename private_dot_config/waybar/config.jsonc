@@ -1,92 +1,76 @@
 // -*- mode: jsonc -*-
 {
     "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "spacing": 5, // Gaps between modules (4px)
+    "position": "right", // Waybar position (top|bottom|left|right)
+    "spacing": 4, // Gaps between modules (4px)
     "output": "DP-1",
     // Choose the order of the modules
     "modules-left": [
+        "clock",
+        "custom/notifications",
+        "network",
         "privacy",
-        "tray",
         "custom/spotify",
-        "custom/media"
+        "pulseaudio"
     ],
     "modules-center": [
-        "clock",
+        "hyprland/workspaces"
     ],
     "modules-right": [
-        "group/hardware",
-        "pulseaudio",
-        "custom/notifications",
         "battery",
+        "tray"
     ],
     "hyprland/workspaces": {
-        "active-only": true,
+        "format": "{icon}",
+        "on-click": "activate",
+        "on-click-right": "close",
+        "all-outputs": true,
+        "active-only": false,
+        "sort-by-number": true,
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "8": "",
+            "9": "",
+            "default": ""
+        }
     },
     "tray": {
         "spacing": 10
     },
     "clock": {
-        "format": "<big>{:%H:%M}</big>",
+        "format": "<big>{:%R}</big>",
+        "format-alt": "<small>{:%d.%m.%Y}</small>",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "group/hardware": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "not-power",
-            "transition-left-to-right": true,
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            },
+            "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "tz_up",
+                "on-scroll-down": "tz_down"
+            }
         },
-        "modules": [
-            "custom/hardware",
-            "temperature",
-            "memory",
-            "disk",
-            "cpu",
-            "network",
-        ],
-    },
-    "temperature": {
-        "format": "|TEMP: {temperatureC}%|",
-        "tooltip": false,
-    },
-    "memory": {
-        "format": "|RAM: {percentage}%|",
-    },
-    "disk": {
-        "format": "|DISK: {percentage_used}%|",
-        "tooltip": false,
-    },
-    "cpu": {
-        "format": "|CPU: {usage}%|",
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 20,
-            "critical": 10
-        },
-        "format": "|{capacity}% {icon}|",
-        "format-charging": "|{capacity}% |",
-        "format-plugged": "|{capacity}% |",
-        "format-alt": "|{time} {icon}|",
-        "format-full": "",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
     },
     "network": {
         "format-wifi": "Wifi: {essid} ({signalStrength}%)  ",
-        "format-ethernet": "Ethernet:   ",
+        "format-ethernet": "",
         "tooltip-format": "{ifname} via {gwaddr} with {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP)  ",
+        "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "on-click": "kitty nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -110,7 +94,7 @@
             ]
         },
         "on-click": "pavucontrol -t 3",
-        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/spotify": {
         "format": "{}",
@@ -123,10 +107,7 @@
         "hide-empty-text": true,
         "justify": "center",
         "max-length": 40,
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh spotify",
-    },
-    "custom/hardware": {
-        "format": "<big></big>",
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh spotify"
     },
     "custom/notifications": {
         "format": "<big>{text}</big>",
@@ -135,6 +116,6 @@
         "exec-on-event": "~/.local/bin/check-do-not-disturb.sh show",
         "tooltip": false,
         "return-type": "text",
-        "signal": 2,
-    },
+        "signal": 2
+    }
 }
