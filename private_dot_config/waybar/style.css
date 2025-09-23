@@ -9,7 +9,6 @@
     margin: 1px 2px;
     color: @text;
     border-radius: 12px;
-    min-width: 20px;
 }
 
 *:hover {
@@ -19,6 +18,7 @@
 /* Window */
 window#waybar {
     background-color: @base;
+    border-radius: 15px;
 }
 
 /* Workspaces */
