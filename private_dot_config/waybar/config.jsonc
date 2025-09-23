@@ -40,6 +40,7 @@
             "5": "",
             "8": "",
             "9": "",
+            "10": "",
             "default": ""
         }
     },
@@ -67,7 +68,7 @@
                 "on-scroll-up": "tz_up",
                 "on-scroll-down": "tz_down"
             }
-        },
+        }
     },
     "network": {
         "format-wifi": "Wifi: {essid} ({signalStrength}%)  ",

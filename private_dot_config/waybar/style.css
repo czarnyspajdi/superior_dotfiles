@@ -36,12 +36,17 @@ window#waybar {
 }
 
 #workspaces button.active {
-    box-shadow: inset 1px 4px 0 1px;
     background-color: @surface0;
+    box-shadow: inset 1px 4px 0 1px;
 }
 
 #workspaces button.urgent {
     background-color: @red;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 /* Clock */
@@ -75,6 +80,7 @@ window#waybar {
     background-color: @sapphire;
 }
 
+/* Battery */
 #battery {
     background-color: @base;
 }
