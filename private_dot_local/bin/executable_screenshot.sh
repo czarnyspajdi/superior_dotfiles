@@ -9,9 +9,6 @@ target_path="$HOME/Obrazy/zrzuty/$fname"
 error_wrong_type="The first argument needs to be \"fullscreen\", \"window\" or \"region\". Exiting..."
 notification_succes="$target_path saved and copied"
 
-notification() {
-    notify-send -i "$target_path" -u low -a "Screenshot" "Screenshot saved" "$notification_succes"
-}
 
 # validate input
 case "$1" in
@@ -23,6 +20,10 @@ case "$1" in
         exit
         ;;
 esac
+
+notification() {
+    notify-send -i "$target_path" -u low -a "Screenshot" "Screenshot $type" "$notification_succes"
+}
 
 case $type in
     "fullscreen")
