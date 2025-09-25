@@ -10,7 +10,7 @@ error_wrong_type="The first argument needs to be \"fullscreen\", \"window\" or \
 notification_succes="$target_path saved and copied"
 
 notification() {
-    notify-send -i "$target_path" -u low -a "Screenshot" "Screenshot" "$notification_succes"
+    notify-send -i "$target_path" -u low -a "Screenshot" "Screenshot saved" "$notification_succes"
 }
 
 # validate input
