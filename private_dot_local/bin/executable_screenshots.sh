@@ -5,7 +5,7 @@
 ## feh
 ## grim
 ## slurp
-## swappy
+## satty
 ## wl-clipboard
 
 dir_target="$HOME/Obrazy/zrzuty" # where your screenshots are stored
