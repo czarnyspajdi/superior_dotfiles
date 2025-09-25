@@ -113,7 +113,7 @@ case "$copy-$save" in
   ;;
 "false-false")
   if [ "$edit" = "true" ]; then
-    swappy -f "$tmp_path"
+    satty -f "$tmp_path"
   fi
   ;;
 esac
