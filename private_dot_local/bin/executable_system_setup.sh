@@ -107,13 +107,16 @@ slurp
 grim
 "
 
-# --- Drukowanie ---
 PRINT_PKGS="
 cups
 cups-browsed
 "
 
-PKGS=( $HYPR_PKGS $SOUND_PKGS $UTIL_PKGS $GUI_PKGS $PRINT_PKGS )
+THEME_PKGS="
+catppuccin-gtk-theme-latte
+"
+
+PKGS=( $HYPR_PKGS $SOUND_PKGS $UTIL_PKGS $GUI_PKGS $PRINT_PKGS $THEME_PKGS )
 
 echo "Downloading packages..."
 sudo pacman -Syu --needed "${PKGS[@]}"
