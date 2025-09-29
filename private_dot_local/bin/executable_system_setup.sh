@@ -101,6 +101,7 @@ gamemode
 bluez
 bluez-utils
 blueman
+waybar
 heroic-games-launcher
 feh
 slurp
