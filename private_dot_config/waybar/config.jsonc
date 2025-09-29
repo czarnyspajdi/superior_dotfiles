@@ -9,7 +9,7 @@
     "margin-right": 8,
     "mode": "dock",
     "reload_style_on_change": true,
-    "width": 50,
+    "width": 70,
     "output": [
         "DP-1",
         "eDP-1",
@@ -77,7 +77,7 @@
         }
     },
     "network": {
-        "format-wifi": "   ({signalStrength}%)",
+        "format-wifi": "Wifi: {essid} ({signalStrength}%)  ",
         "format-ethernet": "",
         "tooltip-format": "{ifname} via {gwaddr} with {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
