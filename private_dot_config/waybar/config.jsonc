@@ -13,7 +13,7 @@
     "output": [
         "DP-1",
         "eDP-1",
-        "VGA"
+        "LVDS-1"
     ],
     // Choose the order of the modules
     "modules-left": [
