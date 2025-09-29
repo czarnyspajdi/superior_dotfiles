@@ -116,7 +116,7 @@ THEME_PKGS="
 catppuccin-gtk-theme-latte
 "
 
-PKGS=( $HYPR_PKGS $SOUND_PKGS $UTIL_PKGS $GUI_PKGS $PRINT_PKGS $THEME_PKGS )
+PKGS=( $HYPR_PKGS $SOUND_PKGS $UTIL_PKGS $GUI_PKGS $PRINT_PKGS  )
 
 echo "Downloading packages..."
 sudo pacman -Syu --needed "${PKGS[@]}"
@@ -148,5 +148,8 @@ echo "Services setup..."
 
 systemctl --user enable hypridle hyprpolkitagent pipewire-pulse
 sudo systemctl enable bluetooth cups
+
+echo "Downloading theme with yay..."
+yay -S $THEME_PKGS --needed
 
 echo -e "${BOLD}${GREEN}All done!${RESET}"
