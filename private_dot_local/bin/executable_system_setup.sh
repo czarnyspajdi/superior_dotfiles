@@ -27,7 +27,8 @@ hyprland-qt-support
 hyprland-qtutils
 hyprlang
 hyprlock
-hyprpaper
+swww
+waypaper
 hyprpolkitagent
 hyprsunset
 hyprutils
