@@ -19,7 +19,6 @@
     "modules-left": [
         "clock",
         "custom/notifications",
-        "network",
         "privacy",
         "custom/spotify",
         "pulseaudio"
