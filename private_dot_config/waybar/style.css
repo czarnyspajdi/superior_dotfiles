@@ -86,7 +86,7 @@ window#waybar {
 }
 
 #battery.warning:not(.charging) {
-    background: @warning;
+    background: @yellow;
     color: @foreground;
     animation-name: blink;
     animation-duration: 1s;
@@ -98,11 +98,11 @@ window#waybar {
 #battery.charging,
 #battery.plugged {
     color: @foreground;
-    background-color: @success;
+    background-color: @green;
 }
 
 #battery.critical:not(.charging) {
-    background-color: @critical;
+    background-color: @red;
     color: @foreground;
     animation-name: blink;
     animation-duration: 1s;
