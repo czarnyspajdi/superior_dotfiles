@@ -48,6 +48,9 @@ play = [
 	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
+pdff = [
+	{ run = 'zathura "$@"', desc = "zathura", block = true, for = "unix" },
+	]
 
 [open]
 rules = [
@@ -68,7 +71,9 @@ rules = [
 	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
 	# Fallback
 	{ name = "*", use = [ "open", "reveal" ] },
+    {mime = "application/pdf", use = [ "pdff", "reveal" ] },
 ]
+
 
 [tasks]
 micro_workers    = 10
