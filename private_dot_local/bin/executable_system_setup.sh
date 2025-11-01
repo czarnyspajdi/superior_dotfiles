@@ -55,6 +55,7 @@ python3
 util-linux
 libnewt
 wofi
+hyprlauncher
 kitty
 yazi
 playerctl
