@@ -74,3 +74,8 @@ PATH=$PATH:~/.local/bin/
 # something to ble.sh
 
 [[ ! ${BLE_VERSION-} ]] || ble-attach
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/szymon/.lmstudio/bin"
+# End of LM Studio CLI section
+

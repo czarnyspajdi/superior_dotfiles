@@ -37,6 +37,7 @@ xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 mako
 libnotify
+hyprlauncher
 "
 
 SOUND_PKGS="
@@ -54,8 +55,6 @@ uwsm
 python3
 util-linux
 libnewt
-wofi
-hyprlauncher
 kitty
 yazi
 playerctl

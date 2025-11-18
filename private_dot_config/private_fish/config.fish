@@ -19,3 +19,8 @@ if status is-interactive
     clear
     fastfetch --config ~/.config/fastfetch/startup.jsonc
 end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/szymon/.lmstudio/bin
+# End of LM Studio CLI section
+
