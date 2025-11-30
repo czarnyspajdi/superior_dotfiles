@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=X
+GenericName=Social Media Client
+Comment=Otwórz X (dawniej Twitter) w trybie aplikacji
+Exec=uwsm app -- chromium --app=https://x.com
+Icon=twitter
+Terminal=false
+Categories=Network;WebBrowser;X-Social;
+StartupWMClass=x.com
+StartupNotify=true
