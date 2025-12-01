@@ -4,7 +4,7 @@ Type=Application
 Name=X
 GenericName=Social Media Client
 Comment=Otwórz X (dawniej Twitter) w trybie aplikacji
-Exec=uwsm app -- chromium --user-data-dir=/home/szymon/.local/share/chromium-x --app=https://x.com
+Exec=uwsm app -- chromium --app=https://x.com
 Icon=twitter
 Terminal=false
 Categories=Network;WebBrowser;X-Social;
