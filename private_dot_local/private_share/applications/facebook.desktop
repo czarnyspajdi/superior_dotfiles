@@ -4,7 +4,7 @@ Type=Application
 Name=Facebook
 GenericName=Social Media Client
 Comment=Otwórz Facebook 
-Exec=uwsm app -- chromium --app=https://facebook.com
+Exec=uwsm app -- chromium --user-data-dir=/home/szymon/.local/share/chromium-facebook --app=https://facebook.com 
 Terminal=false
 Categories=Network;WebBrowser;X-Social;
 StartupWMClass=facebook.com
