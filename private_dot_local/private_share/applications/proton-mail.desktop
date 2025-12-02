@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Proton mail
+GenericName=Proton mail
+Comment=Otwórz Proton Mail
+Exec=uwsm app -- chromium --app mail.proton.me/u/0/inbox.com
+Terminal=false
+Categories=Email;;
+StartupWMClass=proton-mail.com
+StartupNotify=true
