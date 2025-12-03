@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Inoreader
+GenericName=Rss client
+Comment=Otwórz Inoreader 
+Exec=uwsm app -- chromium --app=https://www.inoreader.com/all_articles
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=inoreader.com
+StartupNotify=true
