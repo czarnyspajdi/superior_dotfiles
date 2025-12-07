@@ -31,6 +31,7 @@ audio/ogg=vlc.desktop
 audio/wav=vlc.desktop
 audio/aac=vlc.desktop
 audio/x-hx-aac-adts=vlc.desktop
+application/pdf=org.pwmt.zathura.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;userapp-Zen-2KDM82.desktop;zen-beta.desktop;
