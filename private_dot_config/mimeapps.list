@@ -1,0 +1,45 @@
+[Default Applications]
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop
+x-scheme-handler/chrome=zen.desktop
+text/html=zen.desktop
+application/x-extension-htm=zen.desktop
+application/x-extension-html=zen.desktop
+application/x-extension-shtml=zen.desktop
+application/xhtml+xml=zen.desktop
+application/x-extension-xhtml=zen.desktop
+application/x-extension-xht=zen.desktop
+x-scheme-handler/sgnl=signal-desktop.desktop
+x-scheme-handler/signalcaptcha=signal-desktop.desktop
+x-scheme-handler/proton-inbox=Proton Mail.desktop
+x-scheme-handler/nxm=ModOrganizer-steamtinkerlaunch-dl.desktop
+x-scheme-handler/nxm-protocol=ModOrganizer-steamtinkerlaunch-dl.desktop
+image/png=feh.desktop
+image/jpeg=feh.desktop
+x-scheme-handler/freetube=FreeTube.desktop
+audio/hx-aac-adts=vlc.desktop
+audio/*=vlc.desktop
+image/*=feh.desktop
+image/webp=feh.desktop
+image/gif=feh.desktop
+image/bmp=feh.desktop
+image/svg+xml=feh.desktop
+audio/mpeg=vlc.desktop
+audio/flac=vlc.desktop
+audio/ogg=vlc.desktop
+audio/wav=vlc.desktop
+audio/aac=vlc.desktop
+audio/x-hx-aac-adts=vlc.desktop
+
+[Added Associations]
+x-scheme-handler/http=zen.desktop;userapp-Zen-2KDM82.desktop;zen-beta.desktop;
+x-scheme-handler/https=zen.desktop;userapp-Zen-2KDM82.desktop;zen-beta.desktop;
+x-scheme-handler/chrome=zen.desktop;userapp-Zen-2KDM82.desktop;zen-beta.desktop;
+text/html=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
+application/x-extension-htm=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
+application/x-extension-html=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
+application/x-extension-shtml=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
+application/xhtml+xml=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
+application/x-extension-xhtml=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
+application/x-extension-xht=zen-beta.desktop;zen.desktop;userapp-Zen-2KDM82.desktop;
