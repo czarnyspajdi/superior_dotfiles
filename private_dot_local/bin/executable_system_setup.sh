@@ -8,150 +8,287 @@ RESET='\033[0m'
 
 # functions
 function install_yay() {
-    echo "Yay is not installed, installing..."
-    sudo pacman -S --needed git base-devel
-    tmpdir="$(mktemp -d)"
-    git clone https://aur.archlinux.org/yay.git "$tmpdir"
-    cd "$tmpdir"
-    makepkg -si
-    cd -
-    rm -rf "$tmpdir"
+    echo "Checking if yay is installed..."
+    if ! command -v yay &> /dev/null; then
+        echo "Yay is not installed, installing..."
+        sudo pacman -S --needed git base-devel
+        tmpdir="$(mktemp -d)"
+        git clone https://aur.archlinux.org/yay.git "$tmpdir"
+        cd "$tmpdir"
+        makepkg -si || { echo "Yay installation failed!"; exit 1; }
+        cd -
+        rm -rf "$tmpdir"
+    fi
+    echo "Yay is installed!"
 }
 # pkgs lists
-HYPR_PKGS="
-hyprcursor
-hyprgraphics
-hypridle
+
+HYPRLAND_UI="
 hyprland
-hyprland-qt-support
-hyprland-qtutils
-hyprlang
-hyprlock
-swww
-waypaper
-hyprpolkitagent
-hyprsunset
-hyprutils
-hyprwayland-scanner
-xdg-desktop-portal-hyprland
-xdg-desktop-portal-gtk
-mako
-libnotify
+hyprland-protocols
 hyprlauncher
+hypridle
+hyprlock
+hyprpaper
+hyprpolkitagent
+hyprpwcenter
+hyprsunset
+hyprwire
+waybar
+grim
+slurp
+swww
+wl-clipboard
+nwg-displays
+nwg-look
+waypaper
+xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
+mako
+notification-daemon
+libnotify
+sddm
 "
 
-SOUND_PKGS="
+THEME="
+adw-gtk-theme
+catppuccin-gtk-theme-latte
+papirus-icon-theme
+rose-pine-cursor
+rose-pine-hyprcursor
+
+"
+
+AUDIO="
 pipewire
-wireplumber
-pipewire-audio
 pipewire-alsa
 pipewire-pulse
+wireplumber
 pavucontrol
+cava
 "
-UTIL_PKGS="
+
+NETWORK="
+networkmanager
+network-manager-applet
+blueman
+bluez
+bluez-utils
+bluez-cups
+openssh
+sshfs
+aria2
+wget
+rclone
+"
+
+PRINTERS="
+cups
+cups-browsed
+cups-pdf
+system-config-printer
+sane
+sane-airscan
+"
+
+FILESYSTEM="
+btrfs-progs
+btrfs-assistant
+snapper
+ntfs-3g
+dosfstools
+zip
+7zip
+rsync
+trash-cli
+"
+
+TERMINAL_TOOLS="
 fish
-neovim
-uwsm
-python3
-util-linux
-libnewt
-kitty
 yazi
 playerctl
-flatpak
-wl-clipboard
-scx-scheds
-man-db
-fastfetch
-btop
-file
-nerd-fonts
-ffmpeg
-7zip
-jq
-poppler
+atuin
+zoxide
+eza
 fd
 ripgrep
 fzf
-zoxide
-imagemagick
-bat
-eza
-npm
+duf
+gdu
+fastfetch
+tealdeer
+man-db
 bc
+mediainfo
+"
+
+DEV="
+cmake
+go
+rust
+rust-analyzer
+python-pip
+prettier
+npm
+pandoc-cli
+tectonic
 chezmoi
+neovim
+lazygit
 github-cli
-openssh
-socat
-otf-font-awesome
-papirus-icon-theme
-hicolor-icon-theme
-noto-fonts-emoji
-cliphist
 "
 
-GUI_PKGS="
-zen-browser-bin
-vesktop
-mangohud
-goverlay
+GAMES="
 steam
-gimp
-gamescope
+heroic-games-launcher-bin
+lutris
+wine
+winetricks
+protontricks
+prismlauncher
 gamemode
-bluez
-bluez-utils
-blueman
-waybar
-heroic-games-launcher
+gamescope
+mangohud
+lact
+goverlay
+"
+
+MULTIMEDIA="
+mpv
+satty
+gimp
+kdenlive
+imagemagick
 feh
-slurp
-grim
 "
 
-PRINT_PKGS="
-cups
-cups-browsed
+DOCUMENTS="
+zathura
+zathura-pdf-poppler
 "
 
-THEME_PKGS="
-catppuccin-gtk-theme-latte
+USERSPACE="
+gurk
+vesktop
+openrgb
+homebank
+winboat
+freetube
+zen-browser-bin
 "
 
-PKGS=( $HYPR_PKGS $SOUND_PKGS $UTIL_PKGS $GUI_PKGS $PRINT_PKGS  )
+declare -A presets
+presets[minimal]="$HYPRLAND_UI $AUDIO $TERMINAL_TOOLS"
+presets[normal]="$HYPRLAND_UI $AUDIO $TERMINAL_TOOLS $THEME $NETWORK $FILESYSTEM $USERSPACE $DOCUMENTS $MULTIMEDIA $PRINTERS $DEV $GAMES"
 
-echo "Downloading packages..."
-sudo pacman -Syu --needed "${PKGS[@]}"
+wants_help=false
+list=false
+list_presets=false
+install=false
+uninstall=false
+preset=""
 
-if ! groups "$USER" | grep -qw "gamemode"; then
-    sudo usermod -aG gamemode "$USER"
+help_message="Super cool system setup utility that downloads all the packages you could possibly need!\n
+How to use this bad boy:\n\n
+\t--help - show this help message and leave\n
+\t--list - list what is in given preset and leave. You can only use this option with --preset!\n
+\t--preset - choose a preset you want to use\n
+\t--install - installs given preset to your system\n
+\t--uninstall - uninstall given preset from your system. Possibly very stupid, because presets contain important system packages, like your window manager!\n\n
+Thanks for using my super cool script :D
+"
+if [ "$EUID" -eq 0 ]; then
+    echo -e "${RED}Please do not run this script as root.${RESET}"
+    exit 1
 fi
 
-if ! echo $PATH | grep -q "$HOME/.local/bin"; then
-    fish -c "fish_add_path \"$HOME/.local/bin\""
+if [[ -z "$1" ]]; then
+    echo "You need to give me some arguments... Try --help if you don't know what you're doing"
+    exit 1
 fi
 
-if ! echo $SHELL | grep -qw "/usr/bin/fish"; then
-    chsh -s "$(command -v fish)"
+while [ -n "$1" ]; do
+    case $1 in
+        --list-presets)
+            list_presets=true
+            shift
+            ;;
+        --list)
+            list=true
+            shift
+            ;;
+        --preset)
+            if [ -n "$2" ]; then
+                preset="$2"
+                shift 2
+            else
+                echo "Error: --preset requires one argument"
+                exit 1
+            fi
+            ;;
+        --help)
+            wants_help=true
+            shift 1
+            ;;
+        --install)
+            install=true
+            shift
+            ;;
+        --uninstall)
+            uninstall=true
+            shift
+            ;;
+        *)
+            echo "$1 is not a valid option! What are you even doing?!"
+            shift
+            ;;
+    esac
+done   
+
+# show help and exit
+if [[ "$wants_help" = true ]]; then
+    echo -e "$help_message"
+    exit 0
 fi
 
-if ! pacman -Q yay &>/dev/null; then
+if [[ "$list_presets" = true ]]; then
+    echo -e "Existing presets:\n\tmiminal - a minimal preset with not a lot of stuff\n\tnormal - preset with everything you could possibly need"
+    exit 0
+fi
+
+
+# check if preset was chosen
+if [[ -v presets[$preset] ]]; then
+
+    # list and exit
+    if [[ "$list" = true ]]; then
+        echo "Preset $preset contains:"
+        echo "${presets[$preset]}"
+        exit 0
+    fi
+
+    # check if yay is installed and install it if needed
     install_yay
+
+    # install given packages
+    if [[ "$install" = true ]]; then
+        echo "Downloading preset: $preset"
+        yay -Syu ${presets[$preset]} --needed
+        exit 0
+    fi
+
+    # uninstall given preset
+    if [[ "$uninstall" = true ]]; then
+        reassurance=""
+        read -p "Are you sure you want to do this very stupid thing? Type I AM VERY DUM to continue..." reassurance
+        if [[ $reassurance = "I AM VERY DUM" ]]; then
+            echo "Uninstalling preset: $preset"
+            yay -Rns ${presets[$preset]}
+        else
+            echo "Canceled uninstall"
+        fi
+        exit 0
+    fi
 else
-	echo "Yay is installed..."
+    echo "Given preset does not exists..."
 fi
-
-echo "Flatpak install..."
-
-flatpak update --noninteractive
-flatpak install --noninteractive com.github.tchx84.Flatseal com.spotify.Client
-
-echo "Services setup..."
-
-systemctl --user enable hypridle hyprpolkitagent pipewire-pulse
-sudo systemctl enable bluetooth cups
-
-echo "Downloading theme with yay..."
-yay -S $THEME_PKGS --needed
-
-echo -e "${BOLD}${GREEN}All done!${RESET}"

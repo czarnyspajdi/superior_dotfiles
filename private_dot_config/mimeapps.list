@@ -18,19 +18,19 @@ x-scheme-handler/nxm-protocol=ModOrganizer-steamtinkerlaunch-dl.desktop
 image/png=feh.desktop
 image/jpeg=feh.desktop
 x-scheme-handler/freetube=FreeTube.desktop
-audio/hx-aac-adts=vlc.desktop
-audio/*=vlc.desktop
+audio/hx-aac-adts=mpv.desktop
+audio/*=mpv.desktop
 image/*=feh.desktop
 image/webp=feh.desktop
 image/gif=feh.desktop
 image/bmp=feh.desktop
 image/svg+xml=feh.desktop
-audio/mpeg=vlc.desktop
-audio/flac=vlc.desktop
-audio/ogg=vlc.desktop
-audio/wav=vlc.desktop
-audio/aac=vlc.desktop
-audio/x-hx-aac-adts=vlc.desktop
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+audio/ogg=mpv.desktop
+audio/wav=mpv.desktop
+audio/aac=mpv.desktop
+audio/x-hx-aac-adts=mpv.desktop
 application/pdf=org.pwmt.zathura.desktop
 
 [Added Associations]
