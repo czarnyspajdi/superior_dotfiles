@@ -21,8 +21,43 @@ function install_yay() {
     fi
     echo "Yay is installed!"
 }
-# pkgs lists
 
+function show_help() {
+    echo -e "$help_message"
+    exit 0
+}
+
+function list_presets() {
+    echo -e "Existing presets:\n\tmiminal - a minimal preset with not a lot of stuff\n\tnormal - preset with everything you could possibly need"
+    exit 0
+}
+
+function list_preset_packages() {
+    echo "Preset $preset contains:"
+    echo "${presets[$preset]}"
+    exit 0
+}
+
+function install_preset() {
+    install_yay
+    echo "Downloading preset: $preset"
+    yay -Syu ${presets[$preset]} --needed
+    exit 0
+}
+
+function uninstall_preset() {
+    reassurance=""
+    read -p "Are you sure you want to do this very stupid thing? Type I AM VERY DUM to continue..." reassurance
+    if [[ $reassurance = "I AM VERY DUM" ]]; then
+        echo "Uninstalling preset: $preset"
+        yay -Rns ${presets[$preset]}
+    else
+        echo "Canceled uninstall"
+    fi
+    exit 0
+}
+
+# pkgs lists
 HYPRLAND_UI="
 hyprland
 hyprland-protocols
@@ -56,7 +91,6 @@ catppuccin-gtk-theme-latte
 papirus-icon-theme
 rose-pine-cursor
 rose-pine-hyprcursor
-
 "
 
 AUDIO="
@@ -197,16 +231,20 @@ How to use this bad boy:\n\n
 \t--uninstall - uninstall given preset from your system. Possibly very stupid, because presets contain important system packages, like your window manager!\n\n
 Thanks for using my super cool script :D
 "
+
+# check root
 if [ "$EUID" -eq 0 ]; then
     echo -e "${RED}Please do not run this script as root.${RESET}"
     exit 1
 fi
 
+# check args
 if [[ -z "$1" ]]; then
     echo "You need to give me some arguments... Try --help if you don't know what you're doing"
     exit 1
 fi
 
+# parse args
 while [ -n "$1" ]; do
     case $1 in
         --list-presets)
@@ -245,49 +283,24 @@ while [ -n "$1" ]; do
     esac
 done   
 
-# show help and exit
+# execute actions
 if [[ "$wants_help" = true ]]; then
-    echo -e "$help_message"
-    exit 0
+    show_help
 fi
 
 if [[ "$list_presets" = true ]]; then
-    echo -e "Existing presets:\n\tmiminal - a minimal preset with not a lot of stuff\n\tnormal - preset with everything you could possibly need"
-    exit 0
+    list_presets
 fi
 
-
-# check if preset was chosen
 if [[ -v presets[$preset] ]]; then
-
-    # list and exit
     if [[ "$list" = true ]]; then
-        echo "Preset $preset contains:"
-        echo "${presets[$preset]}"
-        exit 0
+        list_preset_packages
     fi
-
-    # check if yay is installed and install it if needed
-    install_yay
-
-    # install given packages
     if [[ "$install" = true ]]; then
-        echo "Downloading preset: $preset"
-        yay -Syu ${presets[$preset]} --needed
-        exit 0
+        install_preset
     fi
-
-    # uninstall given preset
     if [[ "$uninstall" = true ]]; then
-        reassurance=""
-        read -p "Are you sure you want to do this very stupid thing? Type I AM VERY DUM to continue..." reassurance
-        if [[ $reassurance = "I AM VERY DUM" ]]; then
-            echo "Uninstalling preset: $preset"
-            yay -Rns ${presets[$preset]}
-        else
-            echo "Canceled uninstall"
-        fi
-        exit 0
+        uninstall_preset
     fi
 else
     echo "Given preset does not exists..."
