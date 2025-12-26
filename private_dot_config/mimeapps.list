@@ -15,14 +15,14 @@ x-scheme-handler/signalcaptcha=signal-desktop.desktop
 x-scheme-handler/proton-inbox=Proton Mail.desktop
 x-scheme-handler/nxm=ModOrganizer-steamtinkerlaunch-dl.desktop
 x-scheme-handler/nxm-protocol=ModOrganizer-steamtinkerlaunch-dl.desktop
-image/png=feh.desktop
-image/jpeg=feh.desktop
+image/png=org.kde.koko.desktop
+image/jpeg=org.kde.koko.desktop
 x-scheme-handler/freetube=FreeTube.desktop
 audio/hx-aac-adts=mpv.desktop
 audio/*=mpv.desktop
-image/*=feh.desktop
-image/webp=feh.desktop
-image/gif=feh.desktop
+image/*=org.kde.koko.desktop
+image/webp=org.kde.koko.desktop
+image/gif=org.kde.koko.desktop
 image/bmp=feh.desktop
 image/svg+xml=feh.desktop
 audio/mpeg=mpv.desktop
@@ -32,6 +32,7 @@ audio/wav=mpv.desktop
 audio/aac=mpv.desktop
 audio/x-hx-aac-adts=mpv.desktop
 application/pdf=org.pwmt.zathura.desktop
+image/jpg=org.kde.koko.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;userapp-Zen-2KDM82.desktop;zen-beta.desktop;

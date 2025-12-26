@@ -48,9 +48,6 @@ play = [
 	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
-pdff = [
-	{ run = 'zathura "$@"', desc = "zathura", block = true, for = "unix" },
-	]
 
 [open]
 rules = [

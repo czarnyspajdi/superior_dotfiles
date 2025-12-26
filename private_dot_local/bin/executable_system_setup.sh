@@ -42,7 +42,6 @@ function install_preset() {
     install_yay
     echo "Downloading preset: $preset"
     yay -Syu ${presets[$preset]} --needed
-    exit 0
 }
 
 function uninstall_preset() {
@@ -55,6 +54,11 @@ function uninstall_preset() {
         echo "Canceled uninstall"
     fi
     exit 0
+}
+
+function enable_services() {
+    sudo systemctl enable sddm bluetooth NetworkManager cups
+    systemctl --user enable pipewire wireplumber
 }
 
 # pkgs lists
@@ -220,6 +224,7 @@ list=false
 list_presets=false
 install=false
 uninstall=false
+services=false
 preset=""
 
 help_message="Super cool system setup utility that downloads all the packages you could possibly need!\n
@@ -227,6 +232,7 @@ How to use this bad boy:\n\n
 \t--help - show this help message and leave\n
 \t--list - list what is in given preset and leave. You can only use this option with --preset!\n
 \t--preset - choose a preset you want to use\n
+\t--services - enable all services after installing packages\n
 \t--install - installs given preset to your system\n
 \t--uninstall - uninstall given preset from your system. Possibly very stupid, because presets contain important system packages, like your window manager!\n\n
 Thanks for using my super cool script :D
@@ -240,7 +246,7 @@ fi
 
 # check args
 if [[ -z "$1" ]]; then
-    echo "You need to give me some arguments... Try --help if you don't know what you're doing"
+    echo "You need to give me some arguments...\nTry --help if you don't know what you're doing"
     exit 1
 fi
 
@@ -276,6 +282,10 @@ while [ -n "$1" ]; do
             uninstall=true
             shift
             ;;
+        --services)
+            services=true
+            shift
+            ;;
         *)
             echo "$1 is not a valid option! What are you even doing?!"
             shift
@@ -283,7 +293,6 @@ while [ -n "$1" ]; do
     esac
 done   
 
-# execute actions
 if [[ "$wants_help" = true ]]; then
     show_help
 fi
@@ -298,6 +307,9 @@ if [[ -v presets[$preset] ]]; then
     fi
     if [[ "$install" = true ]]; then
         install_preset
+        if [[ "$services" = true ]]; then
+            enable_services
+        fi
     fi
     if [[ "$uninstall" = true ]]; then
         uninstall_preset
