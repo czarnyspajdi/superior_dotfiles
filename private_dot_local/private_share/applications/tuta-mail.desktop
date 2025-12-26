@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tuta mail
+GenericName=Tuta mail
+Comment=Otwórz Tuta Mail
+Exec=uwsm app -- chromium --app=https://app.tuta.com/
+Terminal=false
+Categories=Email;
+StartupWMClass=Tuta-mail.com
+StartupNotify=true
